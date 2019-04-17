@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/my/my",
+    "pages/map/map",
+    "pages/heart/heart",
+    "pages/publish/publish"
+  ],
+  "tabBar": {
+    "selectedColor": "#d4237a",
+    "list": [
+      {
+        "pagePath": "pages/my/my",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home-selected.png"
+      },
+      {
+        "pagePath": "pages/heart/heart",
+        "text": "送心",
+        "iconPath": "/images/zan.png",
+        "selectedIconPath": "/images/zan-selected.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "祝福",
+        "iconPath": "/images/publish.png",
+        "selectedIconPath": "/images/publish-selected.png"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "text": "导航",
+        "iconPath": "/images/map.png",
+        "selectedIconPath": "/images/map-selected.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "婚礼纪",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

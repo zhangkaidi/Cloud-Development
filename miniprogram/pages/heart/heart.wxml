@@ -1,0 +1,14 @@
+<view class='user-list'>
+  <view class="user-title">
+    {{userInfoListData==0?'暂未收到赞':'收到'+userInfoListData+'颗❤'}}
+  </view>
+  <view class="user-wrap">
+    <block wx:for="{{userInfoList}}" wx:key="{{index}}">
+      <view class="fl">
+        <image src="{{item.avatarUrl}}" class="img"></image>
+        <text class="text">{{item.nickName}}</text>
+      </view>
+    </block>
+  </view>
+</view>
+<button open-type="getUserInfo" bindgetuserinfo="addUserInfo" class="userinfo-avatar"></button>

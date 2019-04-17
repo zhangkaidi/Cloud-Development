@@ -1,0 +1,16 @@
+<!--miniprogram/pages/my/my.wxml-->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class='swiper'>
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150" />
+    </swiper-item>
+  </block>
+</swiper>
+<audio src="{{src}}" id="myAudio" controls loop></audio>
+<swiper indicator-dots="{{indicatorDotscon}}" autoplay="{{autoplaycon}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" vertical="{{vertical}}"class='swiper-con'>
+  <block wx:for="{{getMessage}}">
+    <swiper-item>
+      <view class="item-message">{{item.message}}</view>
+    </swiper-item>
+  </block>
+</swiper>

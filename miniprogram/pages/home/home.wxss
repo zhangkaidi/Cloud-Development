@@ -1,0 +1,29 @@
+/* pages/home/home.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.join {
+  position: fixed;
+  bottom: 100rpx;
+  width: 150rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 20rpx;
+  background-color: deepskyblue;
+}
+
+.join::after {
+  border: none;
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555328656280&di=6bf3b02a48c7e756178d4b2d5297669b&imgtype=0&src=http%3A%2F%2Fimg.mm4000.com%2Ffile%2F4%2Ff8%2F6118054d93_800.jpg') no-repeat;
+  background-size: 100% 100%;
+}

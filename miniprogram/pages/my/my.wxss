@@ -1,0 +1,35 @@
+/* miniprogram/pages/my/my.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-con {
+  position: fixed;
+  top: 200rpx;
+  height: 150rpx;
+  width: 500rpx;
+  margin-left:-250rpx;
+  left:50%;
+  text-align: center;
+}
+
+.item-message {
+  width: 100%;
+  color:#fff;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

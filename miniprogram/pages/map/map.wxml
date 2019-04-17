@@ -1,0 +1,12 @@
+<!--miniprogram/pages/map/map.wxml-->
+<map
+id="myMap"
+class="map"
+longitude="{{longitude}}" latitude="{{latitude}}"
+scale='18'
+subkey="MMYBZ-SYILR-XZXWY-W7DLK-HSALZ-V3FF4"
+polyline="{{polyline}}"
+markers="{{markers}}"
+show-location
+bindmarkertap="markertap"
+></map>

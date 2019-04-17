@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <view class="write-text">
+      <input placeholder="送上祝福~" type="text" confirm-type="done" class="input" value="{{message}}" bindchange="messageText" focus="{{focus}}" />
+      <button class="userinfo-avatar" bindtap='publish'></button>
+    </view>
+  </view>
+</view>
+<view class='user-list  messagelist'>
+  <view class="user-title">
+    {{messageListData==0?'暂未收到祝福':'收到'+messageListData+'️️个祝福'}}
+  </view>
+  <block wx:for="{{getMessage}}" wx:key="{{index}}">
+    <view class="clearfix">
+      <view class="fl">
+        <image src="{{item.avatarUrl}}" class="icon"></image>
+      </view>
+      <view class="fl con">
+        <text class="text fl">{{item.nickName}}</text>
+        <text class="text fr">{{item.createTime}}</text>
+        <view class="message">{{item.message}}</view>
+      </view>
+      <view class="line"></view>
+    </view>
+  </block>
+</view>
