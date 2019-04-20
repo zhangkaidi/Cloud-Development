@@ -1,13 +1,11 @@
 <view class='user-list'>
-  <view class="user-title">
-    {{userInfoListData==0?'暂未收到赞':'收到'+userInfoListData+'颗❤'}}
+  <view class="user-title clearfix">
+    <image class="icon-message" src="../../images/message.png"></image>
+    <text class="icon-text">{{userInfoListData==0?"":userInfoListData}}</text>
   </view>
-  <view class="user-wrap">
+  <view class="user-wrap" wx:if="{{userInfoList}}">
     <block wx:for="{{userInfoList}}" wx:key="{{index}}">
-      <view class="fl">
-        <image src="{{item.avatarUrl}}" class="img"></image>
-        <text class="text">{{item.nickName}}</text>
-      </view>
+      <image src="{{item.avatarUrl||defaultImage}}" class="img"></image>
     </block>
   </view>
 </view>

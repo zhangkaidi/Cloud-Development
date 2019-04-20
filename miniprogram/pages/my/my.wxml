@@ -7,10 +7,11 @@
   </block>
 </swiper>
 <audio src="{{src}}" id="myAudio" controls loop></audio>
-<swiper indicator-dots="{{indicatorDotscon}}" autoplay="{{autoplaycon}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" vertical="{{vertical}}"class='swiper-con'>
+<swiper indicator-dots="{{indicatorDotscon}}" autoplay="{{autoplaycon}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class='swiper-con'>
   <block wx:for="{{getMessage}}">
     <swiper-item>
       <view class="item-message">{{item.message}}</view>
     </swiper-item>
   </block>
 </swiper>
+<button class="userinfo-avatar" open-type="contact" bindtap='publish'></button>

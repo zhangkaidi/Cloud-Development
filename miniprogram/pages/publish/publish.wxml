@@ -2,26 +2,37 @@
 <view class="container">
   <view class="userinfo">
     <view class="write-text">
-      <input placeholder="送上祝福~" type="text" confirm-type="done" class="input" value="{{message}}" bindchange="messageText" focus="{{focus}}" />
-      <button class="userinfo-avatar" bindtap='publish'></button>
+      <input wx:if="{{inputShow}}" placeholder="送上祝福~" type="text" confirm-type="send" class="input" value="{{message}}" bindconfirm="formSubmit" bindinput="messageText" focus="{{focus}}" />
+      <button class="userinfo-avatar" open-type="getUserInfo" bindtap='publish'></button>
     </view>
   </view>
 </view>
-<view class='user-list  messagelist'>
-  <view class="user-title">
-    {{messageListData==0?'暂未收到祝福':'收到'+messageListData+'️️个祝福'}}
-  </view>
-  <block wx:for="{{getMessage}}" wx:key="{{index}}">
-    <view class="clearfix">
-      <view class="fl">
-        <image src="{{item.avatarUrl}}" class="icon"></image>
-      </view>
-      <view class="fl con">
-        <text class="text fl">{{item.nickName}}</text>
-        <text class="text fr">{{item.createTime}}</text>
+<view class="user-title clearfix">
+  <image class="icon-message" src="../../images/message.png"></image>
+  <text class="icon-text">{{messageListData==0?"":messageListData}}</text>
+</view>
+<scroll-view scroll-y>
+  <view class='user-list  messagelist'>
+    <block wx:for="{{getMessage}}" wx:key="{{index}}">
+      <view class="clearfix message-wrap">
+        <view class="fl">
+          <image src="{{item.avatarUrl}}" class="icon"></image>
+        </view>
+        <view class="fl con">
+          <view class="fl">
+            <view class="text name">{{item.nickName}}
+              <image wx:if="{{item.isTop&&item._openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'}}" class="icon-top" src="../../images/top-top.png"></image>
+            </view>
+            <view class="text time">{{item.createTime}}</view>
+          </view>
+          <view>
+            <image data-id="{{item._id}}" bindtap='deleteMessage' wx:if="{{item._openid==openid}}" src="../../images/delete.png" class="opration delete"></image>
+            <image data-id="{{item._id}}" data-istop="{{item.isTop}}" bindtap='topMessage' wx:if="{{item._openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'&&openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'}}" src="../../images/top.png" class="opration top"></image>
+          </view>
+        </view>
         <view class="message">{{item.message}}</view>
       </view>
-      <view class="line"></view>
-    </view>
-  </block>
-</view>
+    </block>
+    <view class="tip">{{tip}}</view>
+  </view>
+</scroll-view>

@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/my/my",
     "pages/map/map",
     "pages/heart/heart",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/person/person"
   ],
   "tabBar": {
     "selectedColor": "#d4237a",
@@ -29,7 +29,7 @@
       },
       {
         "pagePath": "pages/map/map",
-        "text": "导航",
+        "text": "地图",
         "iconPath": "/images/map.png",
         "selectedIconPath": "/images/map-selected.png"
       }
@@ -39,12 +39,17 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "婚礼纪",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "where are you",
+    "navigationBarTextStyle": "black",
+    "disableSwipeBack": true
   },
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
-  }
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "sitemapLocation": "sitemap.json"
 }

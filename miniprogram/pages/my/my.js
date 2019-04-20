@@ -12,12 +12,13 @@ Page({
     indicatorDots: true,
     autoplay: false,
     circular: true,
-    interval: 2000,
-    getMessage:[],
-    autoplaycon:true,
-    indicatorDotscon:false,
-    vertical:true,
+    interval: 3000,
+    getMessage: [],
+    autoplaycon: true,
+    indicatorDotscon: false,
+    vertical: true,
     duration: 1000,
+    item: 3,
     src: "http://www.170mv.com/kw/other.web.re01.sycdn.kuwo.cn/resource/n3/60/17/263360325.mp3"
   },
   onReady: function() {
@@ -30,7 +31,13 @@ Page({
   },
   getMessage: function() {
     const db = wx.cloud.database()
-    db.collection('message').get().then(res => {
+    db.collection('message').orderBy('createTime', 'desc').get().then(res => {
+      for (var i = 0; i < res.data.length; i++) {
+        if (res.data[i].isTop) {
+          var str = res.data.splice(i, 1);
+          res.data.unshift(str[0]);
+        }
+      }
       this.setData({
         getMessage: res.data
       })

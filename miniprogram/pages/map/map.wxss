@@ -1,9 +1,33 @@
 /* miniprogram/pages/map/map.wxss */
-page{
-  height:100%;
-  width:100%;
+
+page {
+  height: 100%;
+  width: 100%;
 }
-.map{
-  width:100%;
-  height:100%;
+
+.map {
+  width: 100%;
+  height: 100%;
 }
+
+.cover {
+  position: fixed;
+  bottom: 200rpx;
+  right: 20rpx;
+  width: 90rpx;
+  height: 75rpx;
+}
+
+.cover-img {
+  right: 10rpx;
+  width: 90rpx;
+  height: 75rpx;
+}
+.user{
+  background-color: transparent;
+}
+.user::after {
+  border: none;
+}
+
+

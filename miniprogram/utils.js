@@ -1,10 +1,17 @@
-const getLocalTime = nS => {
-  return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
-}
-const getUnixTime = () => {
-  return Math.round(new Date().getTime() / 1000)
-}
+var formatDateTime = (date) => {
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  m = m < 10 ? ('0' + m) : m;
+  var d = date.getDate();
+  d = d < 10 ? ('0' + d) : d;
+  var h = date.getHours();
+  h = h < 10 ? ('0' + h) : h;
+  var minute = date.getMinutes();
+  minute = minute < 10 ? ('0' + minute) : minute;
+  var second = date.getSeconds();
+  second = second < 10 ? ('0' + second) : second;
+  return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+};
 module.exports = {
-  getLocalTime: getLocalTime, //格式化时间
-  getUnixTime: getUnixTime //时间戳
+  formatDateTime
 }

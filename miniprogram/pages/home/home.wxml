@@ -1,4 +1,0 @@
-<!--pages/home/home.wxml-->
-<view class="home container">
-  <button class="join" open-type="getUserInfo" bindtap='getUserInfo'>进入</button>
-</view>

@@ -1,12 +1,8 @@
 <!--miniprogram/pages/map/map.wxml-->
-<map
-id="myMap"
-class="map"
-longitude="{{longitude}}" latitude="{{latitude}}"
-scale='18'
-subkey="MMYBZ-SYILR-XZXWY-W7DLK-HSALZ-V3FF4"
-polyline="{{polyline}}"
-markers="{{markers}}"
-show-location
-bindmarkertap="markertap"
-></map>
+<map id="myMap" class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale='5' subkey="MMYBZ-SYILR-XZXWY-W7DLK-HSALZ-V3FF4" polyline="{{polyline}}" markers="{{markers}}" show-location bindmarkertap="markertap">
+  <cover-view class="cover">
+    <button class="user"open-type="getUserInfo" bindtap='mark'>
+      <cover-image src="../../images/mark.png" class="cover-img userinfo-avatar"></cover-image>
+    </button>
+  </cover-view>
+</map>

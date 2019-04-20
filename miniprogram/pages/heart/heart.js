@@ -6,16 +6,20 @@ Page({
   data: {
     userInfoList: [],
     flag: false,
-    userInfoListData:"",
+    userInfoListData: "",
+    openid: "",
+    defaultImage: "../../images/user-unlogin.png"
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getOpenid() //当前用户openid
+    const {
+      openid
+    } = app.globalData;
     this.getUserCount() //点赞数
-    this.exitOpenId()
-    this.getUserInfo()
+    this.exitOpenId(openid)
+    this.getUserInfoMessage()
   },
   getUserCount: function() {
     const db = wx.cloud.database()
@@ -29,35 +33,51 @@ Page({
     const {
       flag
     } = this.data
-    if (flag) {
-      wx.showToast({
-        title: '已经点过赞啦~',
-        icon: "none"
-      })
-      return
-    }
-    const db = wx.cloud.database({});
-    db.collection('userInfo').add({
-        data: {
-          avatarUrl: app.globalData.avatarUrl,
-          nickName: app.globalData.nickName
+    let that = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success(res) {
+              if (flag) {
+                wx.showToast({
+                  title: '已经点过赞啦~',
+                  icon: "none"
+                })
+                return
+              }
+              const db = wx.cloud.database({});
+              db.collection('userInfo').add({
+                  data: {
+                    avatarUrl: res.userInfo.avatarUrl,
+                    nickName: res.userInfo.nickName
+                  }
+                })
+                .then(resp => {
+                  that.getUserInfoMessage()
+                  that.getUserCount()
+                  that.exitOpenId()
+                  wx.showToast({
+                    title: '点赞成功~',
+                    icon: "none"
+                  })
+                })
+                .catch(resp => {
+                  console.log('resp' + resp)
+                  wx.showToast({
+                    title: '点赞失败~',
+                    icon: "none"
+                  })
+                })
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
         }
-      })
-      .then(resp => {
-        this.getUserInfo()
-        this.getUserCount()
-        this.exitOpenId()
-        wx.showToast({
-          title: '点赞成功~',
-          icon: "none"
-        })
-      })
-      .catch(resp => {
-        wx.showToast({
-          title: '点赞失败~',
-          icon: "none"
-        })
-      })
+      }
+    })
   },
   exitOpenId: function(openid) {
     console.log('exitOpenId--->' + openid)
@@ -80,32 +100,17 @@ Page({
       })
       .catch(resp => {})
   },
-  getOpenid: function() {
-    // 调用云函数
+
+  getUserInfoMessage: function() {
+    let that = this;
     wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        if (res.result.openid) {
-          this.exitOpenId(res.result.openid)
-        }
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-  },
-  getUserInfo: function() {
-    const db = wx.cloud.database({});
-    const that = this;
-    db.collection('userInfo').get()
-      .then(resp => {
-        that.setData({
-          userInfoList: resp.data
-        })
+      name: 'usercount',
+    }).then(res => {
+      that.setData({
+        userInfoList: res.result.data
       })
-      .catch(resp => {})
+    }).catch(res => {
+      console.log('res---->' + res)
+    })
   }
 })
