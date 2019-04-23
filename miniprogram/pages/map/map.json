@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "Bar": "../../component/Bar/Bar/"
+  },
   "navigationBarTitleText": "地图"
 }

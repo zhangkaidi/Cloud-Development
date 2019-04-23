@@ -1,8 +1,5 @@
+<Bar navgationText="{{navgationText}}" num="{{userInfoListData}}"></Bar>
 <view class='user-list'>
-  <view class="user-title clearfix">
-    <image class="icon-message" src="../../images/message.png"></image>
-    <text class="icon-text">{{userInfoListData==0?"":userInfoListData}}</text>
-  </view>
   <view class="user-wrap" wx:if="{{userInfoList}}">
     <block wx:for="{{userInfoList}}" wx:key="{{index}}">
       <image src="{{item.avatarUrl||defaultImage}}" class="img"></image>

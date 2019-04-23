@@ -8,7 +8,8 @@ Page({
     flag: false,
     userInfoListData: "",
     openid: "",
-    defaultImage: "../../images/user-unlogin.png"
+    defaultImage: "../../images/user-unlogin.png",
+    navgationText: "点赞"
   },
   /**
    * 生命周期函数--监听页面显示
@@ -40,6 +41,12 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success(res) {
+              wx.setStorageSync('avatarUrl',
+                res.userInfo.avatarUrl,
+              )
+              wx.setStorageSync('nickName',
+                res.userInfo.nickName
+              )
               if (flag) {
                 wx.showToast({
                   title: '已经点过赞啦~',

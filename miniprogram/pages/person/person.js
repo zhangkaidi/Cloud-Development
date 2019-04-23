@@ -1,66 +1,125 @@
 // miniprogram/pages/person/person.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    switchShow: false,
+    id: "",
+    mapCount: 0,
+    nickName: "",
+    avatarUrl: ""
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onShow: function() {
+    this.mark();
+    this.setData({
+      nickName: wx.getStorageSync('nickName') || app.globalData.nickName,
+      avatarUrl: wx.getStorageSync('avatarUrl') || app.globalData.avatarUrl
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onShareAppMessage: function() {
+    return {
+      title: 'where are u?',
+      path: '/pages/my/my',
+      imageUrl: "../../images/share.jpg"
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  goTarget: function() {
+    wx.navigateTo({
+      url: '/pages/message/message',
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  switchChange(e) {
+    const {
+      mapCount
+    } = this.data;
+    if (mapCount == 0) {
+      this.setData({
+        switchShow: false
+      })
+      wx.showModal({
+        title: '提示',
+        content: '未设置定位，是否去标记？',
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/map/map',
+            })
+          } else if (res.cancel) {
+            console.log('cancal')
+          }
+        }
+      })
+      return;
+    }
+    const {
+      id
+    } = this.data;
+    const {
+      value
+    } = e.detail
+    const db = wx.cloud.database()
+    db.collection('map').doc(id)
+      .update({
+        data: {
+          switchShow: value
+        }
+      })
+      .then(resp => {
+        this.mark()
+      })
+    console.log('switch1 发生 change 事件，携带值为', e.detail.value)
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  mark: function() {
+    const db = wx.cloud.database()
+    db.collection('map').where({
+        _openid: app.globalData.openid
+      })
+      .get()
+      .then(resp => {
+        if (resp.data.length == 0) {
+          return
+        } else {
+          this.setData({
+            mapCount: resp.data && resp.data.length,
+            switchShow: resp.data && resp.data[0].switchShow,
+            id: resp.data && resp.data[0]._id
+          })
+        }
+        console.log(JSON.stringify(resp))
+      })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getUserInfo: function() {
+    let that = this;
+    wx.getSetting({
+      success(ress) {
+        if (ress.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success(res) {
+              wx.setStorageSync('avatarUrl',
+                res.userInfo.avatarUrl,
+              )
+              wx.setStorageSync('nickName',
+                res.userInfo.nickName
+              )
+              that.setData({
+                nickName: res.userInfo.nickName,
+                avatarUrl: res.userInfo.avatarUrl,
+                isLogn: true
+              })
+            },
+            fail() {
+              that.setData({
+                isLogn: false
+              })
+            }
+          })
+        }
+      }
+    })
   }
 })

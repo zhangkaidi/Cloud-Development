@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "送心"
+  "navigationBarTitleText": "点赞",
+  "usingComponents": {
+    "Bar": "../../component/Bar/Bar/"
+  }
 }

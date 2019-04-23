@@ -1,2 +1,33 @@
 <!--miniprogram/pages/person/person.wxml-->
-<text>miniprogram/pages/person/person.wxml</text>
+<view class="person">
+  <view class="person-message">
+    <block wx:if="{{avatarUrl||nickName}}">
+      <image class="user-avatar" src="{{avatarUrl}}"></image>
+      <view class="user-name">{{nickName}}</view>
+    </block>
+    <button open-type='getUserInfo' wx:else bindtap='getUserInfo'>确认授权</button>
+  </view>
+  <view class="list-wrap">
+    <view class="message list" bindtap='goTarget'>
+      <image class="icon" src='../../images/zhufu.png'></image>
+      <text class="icon-text">留言</text>
+      <image class="icon-right" src='../../images/right.png'></image>
+    </view>
+    <view class="biaoji list">
+      <image class="icon" src="../../images/biaoji.png"></image>
+      <text class="icon-text">{{switchShow?'已标记':'未标记'}}</text>
+      <switch checked="{{switchShow}}" bindchange="switchChange" class="switch" color="#0078ff" />
+    </view>
+  </view>
+  <view class="other">
+    <view class="fenxiang other-list">
+      <button open-type="share" class="icon"></button>
+      <view class="text">分享</view>
+    </view>
+    <view class="kefu other-list">
+      <button open-type="contact" class="icon"></button>
+      <view class="text">客服</view>
+    </view>
+  </view>
+  <view class="tip">小技巧: 定位授权，可在地图中标记当前位置</view>
+</view>

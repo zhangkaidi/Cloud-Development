@@ -1,0 +1,9 @@
+<!--Bar.wxml-->
+<view class='navigation' style="height:{{startBarHeight+navgationHeight}}px">
+  <view class='startBar' style='height:{{startBarHeight}}px'></view>
+  <view class='navgation' style='height:{{navgationHeight}}px;line-height:{{navgationHeight}}px'>{{navgationText}}
+    <text>{{num?'('+num+')':''}}</text>
+    <image class="icon-back" wx:if="{{isBack}}" bindtap='navigatBackTo' src="../../images/goBack.png"></image>
+  </view>
+</view>
+<view style="height:{{startBarHeight+navgationHeight}}px"></view>

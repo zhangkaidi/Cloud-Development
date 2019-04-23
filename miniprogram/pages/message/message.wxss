@@ -1,0 +1,42 @@
+/* miniprogram/pages/message/message.wxss */
+
+page {
+  width: 720rpx;
+  height: 100%;
+}
+
+.person-message {
+  position: relative;
+  width: 680rpx;
+  margin: 0 auto;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.time {
+  padding-top: 20rpx;
+  font-size: 26rpx;
+  color: #666;
+  font-weight: bold;
+}
+
+.opration {
+  position: absolute;
+  top: 8rpx;
+  height: 34rpx;
+  width: 34rpx;
+}
+
+.opration.delete {
+  right: 0;
+  width: 35rpx;
+}
+
+.opration.top {
+  right: 60rpx;
+}
+
+.message {
+  padding: 10rpx 0;
+  font-size: 26rpx;
+  color: #333;
+}

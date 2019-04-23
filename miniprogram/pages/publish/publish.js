@@ -9,7 +9,8 @@ Page({
     openid: "",
     inputShow: false,
     tip: "",
-    index: 1
+    index: 1,
+    navgationText:"留言"
   },
   onShow: function() {
     this.setData({
@@ -117,78 +118,6 @@ Page({
       message: e.detail.value.replace(/\s+/g, '')
     })
   },
-  topMessage: function(e) {
-    const {
-      id,
-      istop
-    } = e.currentTarget.dataset
-    let that = this;
-    console.log('id--->' + id)
-    console.log('isTop--->' + istop)
-    wx.showModal({
-      title: '提示',
-      content: istop ? '确定取消置顶吗？' : '确定要置顶吗？',
-      success(res) {
-        if (res.confirm) {
-          const db = wx.cloud.database()
-          console.log('confirm_id' + id)
-          db.collection('message').doc(id).update({
-              data: {
-                isTop: !istop
-              }
-            })
-            .then(res => {
-              wx.showToast({
-                title: istop ? '取消成功' : '置顶成功',
-              })
-              that.getMessage()
-            })
-            .catch(err => {
-              wx.showToast({
-                icon: 'none',
-                title: istop ? '取消失败' : '置顶失败',
-              })
-              console.error('[数据库] 失败：', err)
-            })
-        } else if (res.cancel) {
-          console.log('cancel')
-        }
-      }
-    })
-  },
-  deleteMessage: function(e) {
-    const {
-      id
-    } = e.currentTarget.dataset
-    let that = this;
-    console.log('id--->' + id)
-    wx.showModal({
-      title: '提示',
-      content: '确定要删除这条消息吗？',
-      success(res) {
-        if (res.confirm) {
-          const db = wx.cloud.database()
-          db.collection('message').doc(id).remove()
-            .then(res => {
-              wx.showToast({
-                title: '删除成功',
-              })
-              that.getMessage()
-              that.getUserCount()
-            })
-            .catch(res => {
-              wx.showToast({
-                icon: 'none',
-                title: '删除失败',
-              })
-              console.error('[数据库] [删除记录] 失败：', err)
-            })
-        } else if (res.cancel) {
-          console.log('cancel')
-        }
-      }
-    })
-  },
   publish: function() {
     let that = this;
     wx.getSetting({
@@ -197,6 +126,8 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success(res) {
+              app.globalData.avatarUrl = res.userInfo.avatarUrl
+              app.globalData.nickName = res.userInfo.nickName
               that.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 nickName: res.userInfo.nickName,

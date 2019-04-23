@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<Bar navgationText="{{navgationText}}" num="{{messageListData}}"></Bar>
 <view class="container">
   <view class="userinfo">
     <view class="write-text">
@@ -6,10 +7,6 @@
       <button class="userinfo-avatar" open-type="getUserInfo" bindtap='publish'></button>
     </view>
   </view>
-</view>
-<view class="user-title clearfix">
-  <image class="icon-message" src="../../images/message.png"></image>
-  <text class="icon-text">{{messageListData==0?"":messageListData}}</text>
 </view>
 <scroll-view scroll-y>
   <view class='user-list  messagelist'>
@@ -24,10 +21,6 @@
               <image wx:if="{{item.isTop&&item._openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'}}" class="icon-top" src="../../images/top-top.png"></image>
             </view>
             <view class="text time">{{item.createTime}}</view>
-          </view>
-          <view>
-            <image data-id="{{item._id}}" bindtap='deleteMessage' wx:if="{{item._openid==openid}}" src="../../images/delete.png" class="opration delete"></image>
-            <image data-id="{{item._id}}" data-istop="{{item.isTop}}" bindtap='topMessage' wx:if="{{item._openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'&&openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'}}" src="../../images/top.png" class="opration top"></image>
           </view>
         </view>
         <view class="message">{{item.message}}</view>

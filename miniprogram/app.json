@@ -4,7 +4,8 @@
     "pages/map/map",
     "pages/heart/heart",
     "pages/publish/publish",
-    "pages/person/person"
+    "pages/person/person",
+    "pages/message/message"
   ],
   "tabBar": {
     "selectedColor": "#d4237a",
@@ -17,13 +18,13 @@
       },
       {
         "pagePath": "pages/heart/heart",
-        "text": "送心",
+        "text": "点赞",
         "iconPath": "/images/zan.png",
         "selectedIconPath": "/images/zan-selected.png"
       },
       {
         "pagePath": "pages/publish/publish",
-        "text": "祝福",
+        "text": "留言",
         "iconPath": "/images/publish.png",
         "selectedIconPath": "/images/publish-selected.png"
       },
@@ -32,6 +33,12 @@
         "text": "地图",
         "iconPath": "/images/map.png",
         "selectedIconPath": "/images/map-selected.png"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "text": "我的",
+        "iconPath": "/images/person.png",
+        "selectedIconPath": "/images/person-selected.png"
       }
     ]
   },
@@ -41,7 +48,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "where are you",
     "navigationBarTextStyle": "black",
-    "disableSwipeBack": true
+    "navigationStyle": "custom"
   },
   "permission": {
     "scope.userLocation": {

@@ -11,6 +11,8 @@
 	"appid": "wxf71fb1cee7a18c9e",
 	"projectname": "wedding",
 	"libVersion": "2.3.1",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -28,18 +30,40 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 4,
 			"list": [
 				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
+					"id": 0,
+					"name": "点赞",
+					"pathName": "pages/heart/heart",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "ss",
-					"pathName": "pages/my/my",
+					"name": "消息",
+					"pathName": "pages/message/message",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/person/person",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "祝福",
+					"pathName": "pages/message/message",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地图",
+					"pathName": "pages/map/map",
 					"query": "",
 					"scene": null
 				}

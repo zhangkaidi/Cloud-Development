@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "首页",
   "usingComponents": {
     "Bar": "../../component/Bar/Bar/"
-  }
+  },
+  "navigationBarTitleText": "留言列表"
 }

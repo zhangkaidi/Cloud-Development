@@ -1,0 +1,13 @@
+<!--miniprogram/pages/message/message.wxml-->
+<Bar navgationText="{{navgationText}}" num="{{getMessageCount}}" isBack="{{true}}"></Bar>
+<view class="message">
+  <view class="person-message" wx:for="{{getMessage}}">
+    <view class="time">{{item.createTime}}</view>
+    <view class="message">{{item.message}}</view>
+    <view>
+      <image data-id="{{item._id}}" bindtap='deleteMessage' wx:if="{{item._openid==openid}}" src="../../images/delete.png" class="opration delete"></image>
+      <image data-id="{{item._id}}" data-istop="{{item.isTop}}" bindtap='topMessage' wx:if="{{top}}" src="{{item.isTop?'../../images/istop.png':'../../images/notop.png'}}" class="opration top"></image>
+      <image data-id="{{item._id}}" data-istop="{{item.isTop}}" bindtap='noTopMessage' wx:else src="{{item.isTop?'../../images/istop.png':'../../images/notop.png'}}" class="opration top"></image>
+    </view>
+  </view>
+</view>

@@ -95,21 +95,6 @@ page {
   margin-left: 5rpx;
 }
 
-.opration {
-  position: absolute;
-  top: 8rpx;
-  height: 34rpx;
-  width: 34rpx;
-}
-
-.opration.delete {
-  right: 0;
-  width: 35rpx;
-}
-
-.opration.top {
-  right: 60rpx;
-}
 
 .tip {
   text-align: center;
@@ -145,11 +130,6 @@ page {
   background-color: #fff;
   padding-top: 8rpx;
 }
-
-.messagelist .message-wrap:first-child {
-  margin-top: 0;
-}
-
 .clearfix:after {
   content: " ";
   display: block;
