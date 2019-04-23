@@ -44,6 +44,19 @@ Page({
       })
     })
   },
+  formSubmit: function(e) {
+    console.log()
+    wx.cloud.callFunction({
+      name: 'formid',
+      data:{
+        fid: e.detail.formId
+      }
+    }).then(res => {
+      console.log(res)
+    }).catch(res => {
+      console.log('res---->' + res)
+    })
+  },
   getMessage: function() {
     const db = wx.cloud.database()
     db.collection('message').orderBy('createTime', 'desc').get().then(res => {

@@ -10,3 +10,6 @@
   </block>
 </swiper>
 <image src="../../images/CD.png" class="cd {{isAudio?'rotate':''}}" bindtap='isAudio'></image>
+<form report-submit="{{true}}" bindsubmit="formSubmit">
+   <button form-type="submit">Submit</button>
+</form>
