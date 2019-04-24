@@ -1,8 +1,8 @@
 <Bar navgationText="{{navgationText}}" num="{{userInfoListData}}"></Bar>
-<view class='user-list'>
-  <view class="user-wrap" wx:if="{{userInfoList}}">
+<view class='user-list' wx:if="{{userInfoList}}">
+  <view class="user-wrap">
     <block wx:for="{{userInfoList}}" wx:key="{{index}}">
-      <image src="{{item.avatarUrl||defaultImage}}" class="img"></image>
+      <image src="{{item.avatarUrl||defaultImage}}" bindtap='{{animation}}' class="img {{aniNum==index?'active':''}}"></image>
     </block>
   </view>
 </view>

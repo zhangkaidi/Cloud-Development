@@ -9,7 +9,8 @@ Page({
     userInfoListData: "",
     openid: "",
     defaultImage: "../../images/user-unlogin.png",
-    navgationText: "点赞"
+    navgationText: "点赞",
+    aniNum: null
   },
   /**
    * 生命周期函数--监听页面显示
@@ -22,11 +23,20 @@ Page({
     this.exitOpenId(openid)
     this.getUserInfoMessage()
   },
+  onHide: function() {
+    this.setData({
+      aniNum: null
+    })
+  },
   getUserCount: function() {
     const db = wx.cloud.database()
     db.collection('userInfo').count().then(res => {
       this.setData({
         userInfoListData: res.total
+      }, () => {
+        this.setData({
+          aniNum: Math.floor(Math.random(0, res.total - 1) * 10)
+        })
       })
     })
   },

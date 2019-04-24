@@ -12,6 +12,19 @@ var formatDateTime = (date) => {
   second = second < 10 ? ('0' + second) : second;
   return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
 };
+
+function getFileList(name, that) {
+  wx.cloud.callFunction({
+    name: name,
+  }).then(res => {
+    that.setData({
+      fileList: res.result.tempFileURL
+    })
+  }).catch(res => {
+    console.log('res---->' + res)
+  })
+}
 module.exports = {
-  formatDateTime
+  formatDateTime,
+  getFileList
 }

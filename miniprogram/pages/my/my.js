@@ -48,7 +48,7 @@ Page({
     console.log()
     wx.cloud.callFunction({
       name: 'formid',
-      data:{
+      data: {
         fid: e.detail.formId
       }
     }).then(res => {

@@ -1,15 +1,17 @@
 <!--miniprogram/pages/my/my.wxml-->
-<Bar navgationText="{{navgationText}}" num="{{getMessageCount}}"></Bar>
-<view style="background:url('../../images/bg.png') no-repeat;background-size:100% 100%;" class="slide-image"></view>
-<audio src="{{src}}" id="myAudio" controls loop></audio>
-<swiper indicator-dots="{{indicatorDotscon}}" autoplay="{{autoplaycon}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class='swiper-con'>
-  <block wx:for="{{getMessage}}">
-    <swiper-item>
-      <view class="item-message">{{item.message}}</view>
-    </swiper-item>
-  </block>
-</swiper>
-<image src="../../images/CD.png" class="cd {{isAudio?'rotate':''}}" bindtap='isAudio'></image>
-<form report-submit="{{true}}" bindsubmit="formSubmit">
-   <button form-type="submit">Submit</button>
-</form>
+<view class="home-wrap">
+  <Bar navgationText="{{navgationText}}" num="{{getMessageCount}}"></Bar>
+  <image src="../../images/bg.png"class="slide-image"></image>
+  <audio src="{{src}}" id="myAudio" controls loop></audio>
+  <swiper indicator-dots="{{indicatorDotscon}}" autoplay="{{autoplaycon}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class='swiper-con'>
+    <block wx:for="{{getMessage}}" wx:key="{{index}}">
+      <swiper-item>
+        <view class="item-message">{{item.message}}</view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <image src="../../images/CD.png" class="cd {{isAudio?'rotate':''}}" bindtap='isAudio'></image>
+  <form report-submit="{{true}}" bindsubmit="formSubmit" wx:if="{{false}}">
+    <button form-type="submit">Submit</button>
+  </form>
+</view>
