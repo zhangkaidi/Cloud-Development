@@ -15,16 +15,19 @@ Page({
   },
   onShow: function() {
     this.mark();
+    wx.hideShareMenu();
     this.setData({
-      nickName: wx.getStorageSync('nickName') || app.globalData.nickName,
-      avatarUrl: wx.getStorageSync('avatarUrl') || app.globalData.avatarUrl
+      nickName: wx.getStorageSync('nickName'),
+      avatarUrl: wx.getStorageSync('avatarUrl')
     })
   },
-  onShareAppMessage: function() {
-    return {
-      title: 'where are u?',
-      path: '/pages/my/my',
-      imageUrl: "../../images/share.jpg"
+  onShareAppMessage: function(options) {
+    if (options.from == 'button') {
+      return {
+        title: 'where are u?',
+        path: '/pages/my/my',
+        imageUrl: "../../images/share.jpg"
+      }
     }
   },
   goTarget: function() {

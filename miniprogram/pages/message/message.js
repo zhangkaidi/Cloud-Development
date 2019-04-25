@@ -1,6 +1,5 @@
-// miniprogram/pages/message/message.js
 const app = getApp()
-const utils = require('../../utils.js')
+const utils = require('../../utils/utils.js')
 
 Page({
 
@@ -12,7 +11,7 @@ Page({
     getMessageCount: 0,
     openid: "",
     navgationText: "消息列表",
-    top: false//置顶权限
+    top: false //置顶权限
   },
 
   /**
@@ -25,7 +24,6 @@ Page({
     this.getMessage()
     this.isWhiteList()
   },
-
   deleteMessage: function() {
     const {
       id

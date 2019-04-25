@@ -1,4 +1,5 @@
 const app = getApp()
+const utils = require('../../utils/utils.js')
 Page({
   /**
    * 页面的初始数据
@@ -32,11 +33,8 @@ Page({
     const db = wx.cloud.database()
     db.collection('userInfo').count().then(res => {
       this.setData({
-        userInfoListData: res.total
-      }, () => {
-        this.setData({
-          aniNum: Math.floor(Math.random(0, res.total - 1) * 10)
-        })
+        userInfoListData: res.total,
+        aniNum: utils.random(0, res.total - 1)
       })
     })
   },

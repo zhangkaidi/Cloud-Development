@@ -1,4 +1,3 @@
-<!--miniprogram/pages/my/my.wxml-->
 <view class="home-wrap">
   <Bar navgationText="{{navgationText}}" num="{{getMessageCount}}"></Bar>
   <image src="../../images/bg.png"class="slide-image"></image>

@@ -1,5 +1,5 @@
 const app = getApp()
-const utils = require('../../utils.js')
+const utils = require('../../utils/utils.js')
 Page({
   data: {
     messageListData: 0,
