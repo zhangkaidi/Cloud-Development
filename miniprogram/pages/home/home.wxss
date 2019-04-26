@@ -11,10 +11,13 @@ page {
 }
 
 .slide-image {
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 100%;
   flex: 1;
-  opacity: 0.7;
+  transform: rotate(180deg);
+  opacity: 0.3;
 }
 
 .swiper {
@@ -22,25 +25,86 @@ page {
   height: 100%;
 }
 
+.star-wrap {
+  position: relative;
+  z-index: 100;
+  width: 720rpx;
+  margin: 20rpx auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.star-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.star-right .name {
+  font-size: 28rpx;
+  color: cornflowerblue;
+  margin: 0 20rpx;
+  font-weight: bold;
+}
+
+.star-right .time {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.star-right .con {
+  padding: 5rpx 0;
+  font-size: 32rpx;
+  color: #333;
+  margin: 0 20rpx;
+}
+
+.star-list  .img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  line-height: 0;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+.img-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 20rpx;
+}
+
+.item-img {
+  width: 190rpx;
+  height: 190rpx;
+  margin: 5rpx;
+}
+
 .swiper-con {
-  position: fixed;
-  top: 200rpx;
-  left: 0;
+  margin-top: 20rpx;
   width: 100%;
   padding: 0 20rpx;
   box-sizing: border-box;
-  height: 400rpx;
+  height: 150rpx;
   text-align: center;
 }
 
 .item-message {
   width: 100%;
-  height: 200rpx;
   font-weight: bold;
   color: #000;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   overflow: hidden;
 }
 
@@ -57,13 +121,13 @@ page {
     transform: rotate(360deg);
   }
 }
-
 .cd {
   position: fixed;
   bottom: 200rpx;
   right: 20rpx;
   width: 90rpx;
   height: 90rpx;
+  z-index: 101;
 }
 
 .rotate {

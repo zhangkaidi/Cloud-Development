@@ -1,7 +1,7 @@
 <view class="home-wrap">
   <Bar navgationText="{{navgationText}}" num="{{getMessageCount}}"></Bar>
-  <image src="../../images/bg.png"class="slide-image"></image>
   <audio src="{{src}}" id="myAudio" controls loop></audio>
+  <image src="../../images/bg.png" class="slide-image"></image>
   <swiper indicator-dots="{{indicatorDotscon}}" autoplay="{{autoplaycon}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class='swiper-con'>
     <block wx:for="{{getMessage}}" wx:key="{{index}}">
       <swiper-item>
@@ -9,6 +9,23 @@
       </swiper-item>
     </block>
   </swiper>
+  <view class="star-wrap " wx:for="{{getStarMessage}}" wx:key="{{index}}" wx:for-item="item1">
+    <view class="star-list">
+      <image class="img" src="{{item1.avatorUrl}}"></image>
+    </view>
+    <view class="star-right">
+      <view>
+        <text class="text name">{{item1.nickName}}</text>
+        <text class="text time">{{item1.createTime}}</text>
+      </view>
+      <view class="text con">{{item1.context}}</view>
+      <view class="img-wrap">
+        <block wx:if="{{item1.tempFile.length>0}}" wx:for="{{item1.tempFile}}" wx:for-item="item2">
+          <image src="{{item2.fileID}}" class='item-img' bindtap='imgPreView' data-src='{{item2.fileID}}' data-list='{{item1.fileListUrl}}'></image>
+        </block>
+      </view>
+    </view>
+  </view>
   <image src="../../images/CD.png" class="cd {{isAudio?'rotate':''}}" bindtap='isAudio'></image>
   <form report-submit="{{true}}" bindsubmit="formSubmit" wx:if="{{false}}">
     <button form-type="submit">Submit</button>

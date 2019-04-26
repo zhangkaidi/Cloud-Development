@@ -30,9 +30,12 @@ Page({
       }
     }
   },
-  goTarget: function() {
+  goTarget: function(e) {
+    const {
+      url
+    } = e.currentTarget.dataset
     wx.navigateTo({
-      url: '/pages/message/message',
+      url: url
     })
   },
   switchChange(e) {
