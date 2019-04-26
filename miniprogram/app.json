@@ -5,7 +5,8 @@
     "pages/heart/heart",
     "pages/publish/publish",
     "pages/person/person",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/starpublish/starpublish"
   ],
   "tabBar": {
     "selectedColor": "#d4237a",

@@ -1,0 +1,7 @@
+<!--miniprogram/pages/starpublish/starpublish.wxml-->
+<textarea id="content" class="con" placeholder='说点什么吧' value="{{value}}" bindinput='conText'></textarea>
+<block wx:if="{{tempFile.length>0}}" wx:for="{{tempFile}}">
+  <image src="{{item}}"></image>
+</block>
+<button bindtap='uploadImg'>上传图片</button>
+<button bindtap='publish'>发布</button>

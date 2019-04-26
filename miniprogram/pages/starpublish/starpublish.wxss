@@ -1,0 +1,11 @@
+/* miniprogram/pages/starpublish/starpublish.wxss */
+
+page {
+  height: 100%;
+}
+
+.con {
+  width: 100%;
+  min-height: 400rpx;
+  border: 1px solid #ddd;
+}
