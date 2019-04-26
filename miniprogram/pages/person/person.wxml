@@ -13,7 +13,7 @@
       <text class="icon-text">留言</text>
       <image class="icon-right" src='../../images/right.png'></image>
     </view>
-    <view class="pushlish list" bindtap='goTarget' data-url='/pages/starpublish/starpublish'>
+    <view class="pushlish list" bindtap='goTarget' data-url='/pages/starpublish/starpublish' wx:if="{{openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'}}">
       <image class="icon" src="../../images/zhufu.png"></image>
       <text class="icon-text">发布</text>
       <image class="icon-right" src="../../images/right.png"></image>

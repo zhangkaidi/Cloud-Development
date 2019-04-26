@@ -9,20 +9,23 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class="star-wrap " wx:for="{{getStarMessage}}" wx:key="{{index}}" wx:for-item="item1">
-    <view class="star-list">
-      <image class="img" src="{{item1.avatorUrl}}"></image>
-    </view>
-    <view class="star-right">
-      <view>
-        <text class="text name">{{item1.nickName}}</text>
-        <text class="text time">{{item1.createTime}}</text>
+  <view>
+    <view class="star-wrap " wx:for="{{getStarMessage}}" wx:key="{{index}}" wx:for-item="item1">
+      <view class="star-list clearfix">
+        <image class="img fl" src="{{item1.avatarUrl}}"></image>
+        <view class="fl con-text">
+          <text class="text name fl">{{item1.nickName}}</text>
+          <text class="text time fl">{{item1.createTime}}</text>
+        </view>
       </view>
-      <view class="text con">{{item1.context}}</view>
-      <view class="img-wrap">
-        <block wx:if="{{item1.tempFile.length>0}}" wx:for="{{item1.tempFile}}" wx:for-item="item2">
-          <image src="{{item2.fileID}}" class='item-img' bindtap='imgPreView' data-src='{{item2.fileID}}' data-list='{{item1.fileListUrl}}'></image>
-        </block>
+      <view class="star-right">
+        <view class="text con">{{item1.context}}</view>
+        <view class="img-wrap">
+          <block wx:if="{{item1.tempFile.length>0}}" wx:for="{{item1.tempFile}}" wx:for-item="item2">
+            <image wx:if="{{item2.fileID}}" src="{{item2.fileID}}" class='item-img' bindtap='imgPreView' data-src='{{item2.fileID}}' data-list='{{item1.fileListUrl}}'></image>
+            <view class='item-img-default' wx:else>图片加载中~</view>
+          </block>
+        </view>
       </view>
     </view>
   </view>

@@ -18,10 +18,10 @@
         "selectedIconPath": "/images/home-selected.png"
       },
       {
-        "pagePath": "pages/publish/publish",
-        "text": "留言",
-        "iconPath": "/images/publish.png",
-        "selectedIconPath": "/images/publish-selected.png"
+        "pagePath": "pages/heart/heart",
+        "text": "点赞",
+        "iconPath": "/images/zan.png",
+        "selectedIconPath": "/images/zan-selected.png"
       },
       {
         "pagePath": "pages/map/map",
@@ -30,10 +30,10 @@
         "selectedIconPath": "/images/map-selected.png"
       },
       {
-        "pagePath": "pages/heart/heart",
-        "text": "点赞",
-        "iconPath": "/images/zan.png",
-        "selectedIconPath": "/images/zan-selected.png"
+        "pagePath": "pages/publish/publish",
+        "text": "留言",
+        "iconPath": "/images/publish.png",
+        "selectedIconPath": "/images/publish-selected.png"
       },
       {
         "pagePath": "pages/person/person",

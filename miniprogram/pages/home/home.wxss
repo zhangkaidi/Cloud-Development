@@ -30,38 +30,55 @@ page {
   z-index: 100;
   width: 720rpx;
   margin: 20rpx auto;
-  display: flex;
-  flex-direction: row;
+}
+
+.star-wrap:last-child {
+  margin-bottom: 20rpx;
 }
 
 .star-right {
+  margin-left: 80rpx;
   display: flex;
   flex-direction: column;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #999;
 }
 
-.star-right .name {
+.star-list .name {
+  display: inline-block;
+  width: 250rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 28rpx;
-  color: cornflowerblue;
+  color: blueviolet;
   margin: 0 20rpx;
   font-weight: bold;
 }
 
-.star-right .time {
+.star-list .time {
+  display: inline-block;
   font-size: 24rpx;
-  color: #666;
+  color: #333;
+  font-weight: bold;
 }
 
 .star-right .con {
   padding: 5rpx 0;
   font-size: 32rpx;
-  color: #333;
-  margin: 0 20rpx;
+  color: #000;
+  margin-bottom: 10rpx;
 }
 
 .star-list  .img {
   width: 60rpx;
   height: 60rpx;
   border-radius: 10rpx;
+}
+
+.con-text {
+  height: 60rpx;
+  line-height: 60rpx;
 }
 
 .clearfix:after {
@@ -80,13 +97,24 @@ page {
 .img-wrap {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 20rpx;
 }
 
 .item-img {
-  width: 190rpx;
+  width: 200rpx;
   height: 190rpx;
   margin: 5rpx;
+}
+
+.item-img-default {
+  display: inline-block;
+  width: 200rpx;
+  height: 190rpx;
+  margin: 5rpx;
+  line-height: 190rpx;
+  color: #999;
+  text-align: center;
+  font-size: 20rpx;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .swiper-con {
@@ -121,6 +149,7 @@ page {
     transform: rotate(360deg);
   }
 }
+
 .cd {
   position: fixed;
   bottom: 200rpx;

@@ -41,6 +41,10 @@ Page({
     this.getMessage();
     this.getMusic()
   },
+  onPullDownRefresh: function() {
+    this.getStarMessage();
+    wx.stopPullDownRefresh(); //停止当前页面下拉刷新。
+  },
   getMusic: function() {
     const db = wx.cloud.database()
     db.collection('whiteList').get().then(res => {

@@ -7,13 +7,21 @@ Page({
   data: {
     conText: "",
     tempFile: [],
-    navgationText: "发布"
+    navgationText: "发布",
+    nickName: "",
+    avatarUrl: "",
+    openid: ""
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
 
+    this.setData({
+      openid: app.global.openid,
+      nickName: wx.getStorageSync('nickName'),
+      avatarUrl: wx.getStorageSync('avatarUrl')
+    })
   },
   conText: function(e) {
     this.setData({
@@ -52,7 +60,9 @@ Page({
   publish: function() {
     const {
       tempFile,
-      conText
+      conText,
+      nickName,
+      avatarUrl
     } = this.data
     const db = wx.cloud.database()
     if (!conText) {
@@ -65,8 +75,8 @@ Page({
     db.collection('starpublish').add({
         // data 字段表示需新增的 JSON 数据
         data: {
-          avatorUrl: "",
-          nickName: "我想拼命呼吸",
+          avatarUrl: avatarUrl,
+          nickName: nickName,
           context: conText,
           tempFile: tempFile,
           createTime: db.serverDate()
