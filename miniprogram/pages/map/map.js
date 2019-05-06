@@ -15,6 +15,13 @@ Page({
       openid
     } = app.globalData;
     this.getMark()
+    if (!openid) {
+      wx.showToast({
+        title: '请稍后再试~',
+        icon: "none"
+      })
+      return;
+    }
     this.exitOpenId(openid)
     this.getLocationSetting()
   },

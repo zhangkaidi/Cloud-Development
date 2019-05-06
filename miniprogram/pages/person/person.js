@@ -11,12 +11,14 @@ Page({
     id: "",
     mapCount: 0,
     nickName: "",
-    avatarUrl: ""
+    avatarUrl: "",
+    openid: ""
   },
   onShow: function() {
     this.mark();
     wx.hideShareMenu();
     this.setData({
+      openid: app.globalData.openid,
       nickName: wx.getStorageSync('nickName'),
       avatarUrl: wx.getStorageSync('avatarUrl')
     })
@@ -25,12 +27,22 @@ Page({
     if (options.from == 'button') {
       return {
         title: 'where are u?',
-        path: '/pages/my/my',
+        path: '/pages/home/home',
         imageUrl: "../../images/share.jpg"
       }
     }
   },
   goTarget: function(e) {
+    const {
+      nickName
+    } = this.data;
+    if (!nickName) {
+      wx.showToast({
+        title: '请先登录~',
+        icon: "none"
+      })
+      return;
+    }
     const {
       url
     } = e.currentTarget.dataset

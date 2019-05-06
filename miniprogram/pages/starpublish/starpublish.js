@@ -1,12 +1,14 @@
 // miniprogram/pages/starpublish/starpublish.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    conText: "",
-    tempFile: [],
+    message: "",
+    tempFile: "",
     navgationText: "发布",
     nickName: "",
     avatarUrl: "",
@@ -16,23 +18,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
     this.setData({
-      openid: app.global.openid,
+      openid: app.globalData.openid,
       nickName: wx.getStorageSync('nickName'),
       avatarUrl: wx.getStorageSync('avatarUrl')
     })
   },
   conText: function(e) {
     this.setData({
-      conText: e.detail.value.replace(/\s+/g, '')
+      message: e.detail.value.replace(/\s+/g, '')
     })
   },
 
   uploadImg: function() {
     let that = this;
     wx.chooseImage({
-      count: 6,
+      count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
@@ -60,14 +61,14 @@ Page({
   publish: function() {
     const {
       tempFile,
-      conText,
+      message,
       nickName,
       avatarUrl
     } = this.data
     const db = wx.cloud.database()
-    if (!conText) {
+    if (!message && !tempFile) {
       wx.showToast({
-        title: '请输入文字~',
+        title: '内容不能为空~',
         icon: "none"
       })
       return;
@@ -77,7 +78,7 @@ Page({
         data: {
           avatarUrl: avatarUrl,
           nickName: nickName,
-          context: conText,
+          context: message,
           tempFile: tempFile,
           createTime: db.serverDate()
         }
@@ -85,8 +86,8 @@ Page({
       .then(res => {
         console.log('res-->' + JSON.stringify(res))
         this.setData({
-          conText: null,
-          tempFile: null
+          message: '',
+          tempFile: ""
         })
         wx.showToast({
           title: '发布成功!'

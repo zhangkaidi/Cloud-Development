@@ -5,22 +5,22 @@
       <image class="user-avatar" src="{{avatarUrl}}"></image>
       <view class="user-name">{{nickName}}</view>
     </block>
-    <button open-type='getUserInfo' wx:else bindtap='getUserInfo'>确认授权</button>
+    <button open-type='getUserInfo' wx:else bindtap='getUserInfo'>登录</button>
   </view>
   <view class="list-wrap">
     <view class="message list" bindtap='goTarget' data-url='/pages/message/message'>
       <image class="icon" src='../../images/zhufu.png'></image>
-      <text class="icon-text">留言</text>
+      <text class="icon-text">消息</text>
       <image class="icon-right" src='../../images/right.png'></image>
     </view>
-    <view class="pushlish list" bindtap='goTarget' data-url='/pages/starpublish/starpublish' wx:if="{{openid=='obrQi0XYkVC5m7WztKKtQRa3jpWY'}}">
-      <image class="icon" src="../../images/zhufu.png"></image>
+    <view class="pushlish list" bindtap='goTarget' data-url='/pages/starpublish/starpublish'>
+      <image class="icon" src="../../images/fabu.png"></image>
       <text class="icon-text">发布</text>
       <image class="icon-right" src="../../images/right.png"></image>
     </view>
     <view class="biaoji list">
       <image class="icon" src="../../images/biaoji.png"></image>
-      <text class="icon-text">{{switchShow?'已标记':'未标记'}}</text>
+      <text class="icon-text">{{switchShow?'已显示':'未显示'}}</text>
       <switch checked="{{switchShow}}" bindchange="switchChange" class="switch" color="#0078ff" />
     </view>
   </view>
@@ -34,5 +34,4 @@
       <view class="text">客服</view>
     </view>
   </view>
-  <view class="tip">小技巧: 定位授权，可在地图中标记当前位置</view>
 </view>

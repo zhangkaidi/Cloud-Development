@@ -1,4 +1,6 @@
 const utils = require('../../utils/utils.js')
+const app = getApp()
+
 Page({
 
   /**
@@ -18,7 +20,8 @@ Page({
     isAudio: true,
     src: "",
     getStarMessage: [],
-    fileListUrl: []
+    fileListUrl: [],
+    openid: ""
   },
   onReady: function() {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -34,12 +37,60 @@ Page({
       isAudio: !isAudio
     })
   },
-  onLoad: function() {
-    this.getStarMessage()
+  onLoad:function(){
+    this.getOpenid()
   },
   onShow: function() {
-    this.getMessage();
     this.getMusic()
+  },
+  getOpenid: function() {
+    // 调用云函数
+    const that = this;
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        that.setData({
+          openid: res.result.openid
+        }, () => {
+          that.getStarMessage()
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
+  },
+  deleteMessage: function(e) {
+    const {
+      id
+    } = e.currentTarget.dataset;
+    const that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除这条消息吗？',
+      success(res) {
+        if (res.confirm) {
+          const db = wx.cloud.database()
+          db.collection('starpublish').doc(id).remove()
+            .then(res => {
+              wx.showToast({
+                title: '删除成功',
+              })
+              that.getStarMessage()
+            })
+            .catch(res => {
+              wx.showToast({
+                icon: 'none',
+                title: '删除失败',
+              })
+              console.error('[数据库] [删除记录] 失败：', res)
+            })
+        } else if (res.cancel) {
+          console.log('cancel')
+        }
+      }
+    })
   },
   onPullDownRefresh: function() {
     this.getStarMessage();
@@ -66,29 +117,14 @@ Page({
       console.log('res---->' + res)
     })
   },
-  getMessage: function() {
-    const db = wx.cloud.database()
-    db.collection('message').orderBy('createTime', 'desc').get().then(res => {
-      for (var i = 0; i < res.data.length; i++) {
-        if (res.data[i].isTop) {
-          var str = res.data.splice(i, 1);
-          res.data.unshift(str[0]);
-        }
-      }
-      this.setData({
-        getMessage: res.data
-      })
-    })
-  },
   getStarMessage: function() {
     let that = this;
-
     const db = wx.cloud.database()
     db.collection('starpublish').orderBy('createTime', 'desc').get().then(res => {
       for (let i = 0; i < res.data.length; i++) {
         const fileListUrl = [];
         res.data[i].createTime = utils.formatDateTime(res.data[i].createTime)
-        console.log(res.data[i].tempFile)
+
         wx.cloud.getTempFileURL({
           fileList: res.data[i].tempFile
         }).then(resp => {
@@ -108,7 +144,6 @@ Page({
     })
   },
   imgPreView: function(event) {
-    console.log('sasasa')
     var src = event.currentTarget.dataset.src; //获取data-src
     var imgList = event.currentTarget.dataset.list; //获取data-list
     //图片预览

@@ -16,8 +16,7 @@ page {
   width: 100%;
   height: 100%;
   flex: 1;
-  transform: rotate(180deg);
-  opacity: 0.3;
+  opacity: 0.1;
 }
 
 .swiper {
@@ -41,7 +40,6 @@ page {
   display: flex;
   flex-direction: column;
   padding-bottom: 20rpx;
-  border-bottom: 1px solid #999;
 }
 
 .star-list .name {
@@ -51,7 +49,7 @@ page {
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 28rpx;
-  color: blueviolet;
+  color: #5b6a91;
   margin: 0 20rpx;
   font-weight: bold;
 }
@@ -59,15 +57,21 @@ page {
 .star-list .time {
   display: inline-block;
   font-size: 24rpx;
-  color: #333;
-  font-weight: bold;
+  color: #999;
 }
 
 .star-right .con {
   padding: 5rpx 0;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #000;
   margin-bottom: 10rpx;
+}
+
+.con-text .delete {
+  margin-left: 50rpx;
+  margin-top: 12rpx;
+  width: 40rpx;
+  height: 30rpx;
 }
 
 .star-list  .img {
@@ -102,7 +106,7 @@ page {
 .item-img {
   width: 200rpx;
   height: 190rpx;
-  margin: 5rpx;
+  margin: 6rpx;
 }
 
 .item-img-default {

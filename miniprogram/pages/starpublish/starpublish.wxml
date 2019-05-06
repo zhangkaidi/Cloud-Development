@@ -1,12 +1,16 @@
 <!--miniprogram/pages/starpublish/starpublish.wxml-->
 <Bar navgationText="{{navgationText}}" isBack="{{true}}"></Bar>
 <view class="star-wrap">
-  <textarea id="content" class="con" placeholder='说点什么吧' value="{{value}}" bindinput='conText'></textarea>
-  <view class="img-wrap">
-    <block wx:if="{{tempFile.length>0}}" wx:for="{{tempFile}}">
-      <image src="{{item}}" class='item-img' bindtap='imgPreView' data-src='{{item}}' data-list='{{tempFile}}'></image>
-    </block>
+  <textarea id="content" class="con" placeholder='说点什么吧' value="{{message}}" bindinput='conText'></textarea>
+  <view class="img-wrap" wx:if="{{tempFile.length>0}}">
+    <image wx:for="{{tempFile}}" wx:key="{{index}}" src="{{item}}" class='item-img' bindtap='imgPreView' data-src='{{item}}' data-list='{{tempFile}}'></image>
   </view>
-  <button bindtap='uploadImg'>上传图片</button>
-  <button bindtap='publish'>发布</button>
+  <view class="empty-img" wx:else>
+    暂未上传图片
+  </view>
+  <view class="btn-wrap">
+    <image bindtap='uploadImg' src="../../images/upload.png" class="btn-upload"></image>
+    <view bindtap='publish' class="btn-publish">发布</view>
+  </view>
+
 </view>

@@ -68,7 +68,7 @@ page {
   background-color: #fff;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   box-sizing: border-box;
 }
 
@@ -78,10 +78,10 @@ page {
   border-radius: 50%;
   margin: 5rpx;
 }
-.img.active{
+
+.img.active {
   animation: turn 2s infinite;
 }
-
 
 .text {
   font-size: 24rpx;

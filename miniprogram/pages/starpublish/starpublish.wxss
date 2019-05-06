@@ -7,12 +7,22 @@ page {
 .star-wrap {
   width: 720rpx;
   margin: 0 auto;
+  font-size: 30rpx;
 }
 
 .con {
   width: 100%;
   min-height: 200rpx;
-  border: 1px solid #ddd;
+  padding: 20rpx 0;
+}
+
+.empty-img {
+  width: 232rpx;
+  height: 240rpx;
+  line-height: 240rpx;
+  text-align: center;
+  color: #999;
+  border: 1px dashed #999;
 }
 
 .img-wrap {
@@ -20,7 +30,42 @@ page {
   flex-wrap: wrap;
 }
 
+.btn-wrap {
+  position: fixed;
+  width: 720rpx;
+  margin: 0 auto;
+  height: 60rpx;
+  bottom: 30rpx;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-wrap .btn-upload {
+  width: 70rpx;
+  height: 55rpx;
+  margin-right: 50rpx;
+}
+
+.btn-wrap .btn-publish {
+  text-align: center;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  border: 1px solid blueviolet;
+  color: #fff;
+  background-color: blueviolet;
+  border-radius: 10rpx;
+}
+
+.btn-wrap .btn-publish::after {
+  border: none;
+}
+
 .item-img {
+  box-sizing: border-box;
+  border: 1px dashed #999;
   width: 232rpx;
   height: 240rpx;
   margin: 5rpx;

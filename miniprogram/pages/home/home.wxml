@@ -2,13 +2,6 @@
   <Bar navgationText="{{navgationText}}" num="{{getMessageCount}}"></Bar>
   <audio src="{{src}}" id="myAudio" controls loop></audio>
   <image src="../../images/bg.png" class="slide-image"></image>
-  <swiper indicator-dots="{{indicatorDotscon}}" autoplay="{{autoplaycon}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class='swiper-con'>
-    <block wx:for="{{getMessage}}" wx:key="{{index}}">
-      <swiper-item>
-        <view class="item-message">{{item.message}}</view>
-      </swiper-item>
-    </block>
-  </swiper>
   <view>
     <view class="star-wrap " wx:for="{{getStarMessage}}" wx:key="{{index}}" wx:for-item="item1">
       <view class="star-list clearfix">
@@ -16,13 +9,14 @@
         <view class="fl con-text">
           <text class="text name fl">{{item1.nickName}}</text>
           <text class="text time fl">{{item1.createTime}}</text>
+          <image class="text delete fl" bindtap="deleteMessage" data-id="{{item1._id}}" src="../../images/delete.png" wx:if="{{item1._openid==openid}}"></image>
         </view>
       </view>
       <view class="star-right">
         <view class="text con">{{item1.context}}</view>
         <view class="img-wrap">
-          <block wx:if="{{item1.tempFile.length>0}}" wx:for="{{item1.tempFile}}" wx:for-item="item2">
-            <image wx:if="{{item2.fileID}}" src="{{item2.fileID}}" class='item-img' bindtap='imgPreView' data-src='{{item2.fileID}}' data-list='{{item1.fileListUrl}}'></image>
+          <block wx:if="{{item1.tempFile.length>0}}" wx:for="{{item1.tempFile}}" wx:key="{{index}}" wx:for-item="item2">
+            <image wx:if="{{item2.tempFileURL}}" src="{{item2.tempFileURL}}" class='item-img' bindtap='imgPreView' data-src='{{item2.tempFileURL}}' data-list='{{item1.fileListUrl}}'></image>
             <view class='item-img-default' wx:else>图片加载中~</view>
           </block>
         </view>
