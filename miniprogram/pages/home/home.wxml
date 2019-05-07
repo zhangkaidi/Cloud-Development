@@ -16,7 +16,7 @@
         <view class="text con">{{item1.context}}</view>
         <view class="img-wrap">
           <block wx:if="{{item1.tempFile.length>0}}" wx:for="{{item1.tempFile}}" wx:key="{{index}}" wx:for-item="item2">
-            <image wx:if="{{item2.tempFileURL}}" src="{{item2.tempFileURL}}" class='item-img' bindtap='imgPreView' data-src='{{item2.tempFileURL}}' data-list='{{item1.fileListUrl}}'></image>
+            <image wx:if="{{item2.tempFileURL}}" src="{{item2.tempFileURL}}" class='item-img' bindtap='imgPreView' data-src='{{item2.tempFileURL}}' data-list='{{item1.fileListUrl}}' mode="aspectFill"></image>
             <view class='item-img-default' wx:else>图片加载中~</view>
           </block>
         </view>

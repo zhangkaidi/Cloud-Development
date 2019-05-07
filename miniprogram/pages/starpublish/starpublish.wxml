@@ -2,14 +2,14 @@
 <Bar navgationText="{{navgationText}}" isBack="{{true}}"></Bar>
 <view class="star-wrap">
   <textarea id="content" class="con" placeholder='说点什么吧' value="{{message}}" bindinput='conText'></textarea>
-  <view class="img-wrap" wx:if="{{tempFile.length>0}}">
-    <image wx:for="{{tempFile}}" wx:key="{{index}}" src="{{item}}" class='item-img' bindtap='imgPreView' data-src='{{item}}' data-list='{{tempFile}}'></image>
+  <view class="img-wrap" wx:if="{{filePath.length>0}}">
+    <image wx:for="{{filePath}}" wx:key="{{index}}" src="{{item}}" class='item-img' bindtap='imgPreView' data-src='{{item}}' data-list='{{filePath}}' mode="aspectFill" ></image>
   </view>
   <view class="empty-img" wx:else>
     暂未上传图片
   </view>
   <view class="btn-wrap">
-    <image bindtap='uploadImg' src="../../images/upload.png" class="btn-upload"></image>
+    <image bindtap='uploadImg' src="../../images/upload.png" class="btn-upload" ></image>
     <view bindtap='publish' class="btn-publish">发布</view>
   </view>
 

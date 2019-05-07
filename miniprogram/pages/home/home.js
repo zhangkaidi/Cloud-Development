@@ -37,10 +37,14 @@ Page({
       isAudio: !isAudio
     })
   },
-  onLoad:function(){
+  onLoad: function() {
     this.getOpenid()
   },
   onShow: function() {
+    if (app.globalData.publishSuccess) {
+      this.getStarMessage()
+      app.globalData.publishSuccess = false
+    }
     this.getMusic()
   },
   getOpenid: function() {

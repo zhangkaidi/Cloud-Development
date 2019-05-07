@@ -12,7 +12,8 @@ Page({
     navgationText: "发布",
     nickName: "",
     avatarUrl: "",
-    openid: ""
+    openid: "",
+    filePath: []
   },
   /**
    * 生命周期函数--监听页面显示
@@ -39,47 +40,60 @@ Page({
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const filePath = res.tempFilePaths;
-        let resFile = [];
-
-        for (let i = 0; i < filePath.length; i++) {
-          const time = new Date().getTime();
-          wx.cloud.uploadFile({
-            cloudPath: 'star/' + time + filePath[i].match(/\.[^.]+?$/)[0],
-            filePath: filePath[i], // 文件路径
-          }).then(resp => {
-            resFile.push(resp.fileID)
-            that.setData({
-              tempFile: resFile
-            })
-          }).catch(error => {
-            console.log(error)
-          })
-        }
+        that.setData({
+          filePath: filePath
+        })
       }
     })
   },
   publish: function() {
     const {
-      tempFile,
       message,
-      nickName,
-      avatarUrl
+      filePath,
+      tempFile
     } = this.data
-    const db = wx.cloud.database()
-    if (!message && !tempFile) {
+    let that = this;
+    if (!message && !filePath) {
       wx.showToast({
         title: '内容不能为空~',
         icon: "none"
       })
       return;
     }
+    let resFile = [];
+    for (let i = 0; i < filePath.length; i++) {
+      const time = new Date().getTime();
+      wx.cloud.uploadFile({
+        cloudPath: 'star/' + time + filePath[i].match(/\.[^.]+?$/)[0],
+        filePath: filePath[i], // 文件路径
+      }).then(resp => {
+        resFile.push(resp.fileID)
+        wx.showLoading({
+          title: '发布中~',
+        })
+        if (filePath.length == resFile.length) {
+          that.starpublish(resFile)
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+
+  },
+  starpublish: function(resFile) {
+    const {
+      message,
+      nickName,
+      avatarUrl
+    } = this.data;
+    const db = wx.cloud.database()
     db.collection('starpublish').add({
         // data 字段表示需新增的 JSON 数据
         data: {
           avatarUrl: avatarUrl,
           nickName: nickName,
           context: message,
-          tempFile: tempFile,
+          tempFile: resFile,
           createTime: db.serverDate()
         }
       })
@@ -87,10 +101,11 @@ Page({
         console.log('res-->' + JSON.stringify(res))
         this.setData({
           message: '',
-          tempFile: ""
+          filePath: ""
         })
+        app.globalData.publishSuccess = true
         wx.showToast({
-          title: '发布成功!'
+          title: '发布成功',
         })
       })
       .catch(console.error)

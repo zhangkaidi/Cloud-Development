@@ -29,6 +29,7 @@ App({
     nickName: "",
     openid: "",
     appid: "wxf71fb1cee7a18c9e",
-    key: "MMYBZ-SYILR-XZXWY-W7DLK-HSALZ-V3FF4"
+    key: "MMYBZ-SYILR-XZXWY-W7DLK-HSALZ-V3FF4",
+    publishSuccess: false
   }
 })
