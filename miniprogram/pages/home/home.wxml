@@ -27,4 +27,7 @@
   <form report-submit="{{true}}" bindsubmit="formSubmit" wx:if="{{false}}">
     <button form-type="submit">Submit</button>
   </form>
+  <view class="bgs-wrap" wx:if="{{false}}">
+    <image src="../../images/bgs.png" class="bgs"></image>
+  </view>
 </view>

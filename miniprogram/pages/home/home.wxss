@@ -170,3 +170,20 @@ page {
 #myAudio {
   display: none;
 }
+
+.bgs-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1003;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bgs {
+  border-radius: 10rpx;
+  width: 650rpx;
+  height: 800rpx;
+}

@@ -157,7 +157,7 @@ Page({
       })
       .catch(resp => {})
     db.collection('map').where({
-        _openid: openid
+      _openid: app.globalData.openid
       })
       .get()
       .then(resp => {
