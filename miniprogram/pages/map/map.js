@@ -11,18 +11,8 @@ Page({
     markersCount: ""
   },
   onShow: function() {
-    const {
-      openid
-    } = app.globalData;
     this.getMark()
-    if (!openid) {
-      wx.showToast({
-        title: '请稍后再试~',
-        icon: "none"
-      })
-      return;
-    }
-    this.exitOpenId(openid)
+    this.exitOpenId()
     this.getLocationSetting()
   },
   getuseringo: function() {
@@ -147,10 +137,10 @@ Page({
       fail(res) {}
     })
   },
-  exitOpenId: function(openid) {
+  exitOpenId: function() {
     const db = wx.cloud.database({});
     db.collection('map').where({
-        _openid: openid
+        _openid: app.globalData.openid
       })
       .count()
       .then(resp => {
