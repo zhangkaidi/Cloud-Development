@@ -1,0 +1,6 @@
+<!--miniprogram/pages/ad/ad.wxml-->
+<view class='ad'>
+  <image src="../../images/default.png" class="slide-image"></image>
+  <button wx:if='{{exitInfo}}' open-type="getUserInfo" bindgetuserinfo="userInfo" class='shouquan'>进入</button>
+  <view wx:if='{{next}}' class="next" bindtap="next">跳过</view>
+</view>

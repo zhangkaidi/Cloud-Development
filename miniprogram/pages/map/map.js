@@ -18,31 +18,14 @@ Page({
   getuseringo: function() {
     let that = this;
     wx.getSetting({
-      success(ress) {
-        if (ress.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success(res) {
-              wx.setStorageSync('avatarUrl',
-                res.userInfo.avatarUrl,
-              )
-              wx.setStorageSync('nickName',
-                res.userInfo.nickName
-              )
-              if (ress.authSetting['scope.userLocation']) {
-                that.getLocation()
-              }
-            },
-            fail() {
-              console.log('失败~')
-            }
-          })
+      success(res) {
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+        if (res.authSetting['scope.userLocation']) {
+          that.getLocation()
         }
       },
       fail() {
-        wx.showToast({
-          title: '失败~',
-        })
+        console.log('失败~')
       }
     })
   },
@@ -83,8 +66,8 @@ Page({
           db.collection('map').add({
             data: {
               id: new Date().getTime(),
-              title: wx.getStorageSync('nickName'),
-              iconPath: wx.getStorageSync('avatarUrl'),
+              title: app.globalData.nickName,
+              iconPath: app.globalData.avatarUrl,
               latitude: resp.latitude,
               longitude: resp.longitude,
               width: 20,
@@ -95,6 +78,7 @@ Page({
             wx.showToast({
               title: '标记成功',
             })
+            that.exitOpenId()
             that.getMark()
           })
         }
@@ -157,7 +141,7 @@ Page({
       })
       .catch(resp => {})
     db.collection('map').where({
-      _openid: app.globalData.openid
+        _openid: app.globalData.openid
       })
       .get()
       .then(resp => {
@@ -177,7 +161,8 @@ Page({
       })
       for (var i = 0; i < res.result.data.length; i++) {
         if (!res.result.data[i].switchShow) {
-          delete res.result.data[i]
+          res.result.data[i].iconPath = ''
+          res.result.data[i].title = '匿名'
         }
       }
       that.setData({

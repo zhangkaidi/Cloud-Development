@@ -21,7 +21,8 @@ Page({
     src: "",
     getStarMessage: [],
     fileListUrl: [],
-    openid: ""
+    openid: "",
+    imageFlag: false
   },
   onReady: function() {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -122,9 +123,13 @@ Page({
     })
   },
   getStarMessage: function() {
+    wx.showLoading({
+      title: '加载中...',
+    })
     let that = this;
     const db = wx.cloud.database()
     db.collection('starpublish').orderBy('createTime', 'desc').get().then(res => {
+      wx.hideLoading()
       for (let i = 0; i < res.data.length; i++) {
         const fileListUrl = [];
         res.data[i].createTime = utils.formatDateTime(res.data[i].createTime)
@@ -143,6 +148,7 @@ Page({
           })
         }).catch(error => {
           // handle error
+          wx.hideLoading()
         })
       }
     })
@@ -154,6 +160,12 @@ Page({
     wx.previewImage({
       current: src, // 当前显示图片的http链接
       urls: imgList // 需要预览的图片http链接列表
+    })
+  },
+  loadImage: function(e) {
+    console.log(e)
+    this.setData({
+      imageFlag: true
     })
   }
 })

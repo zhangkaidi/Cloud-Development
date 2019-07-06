@@ -6,4 +6,4 @@
     </block>
   </view>
 </view>
-<button open-type="getUserInfo" bindgetuserinfo="addUserInfo" class="userinfo-avatar"></button>
+<view bindtap="addUserInfo" class="userinfo-avatar"></view>

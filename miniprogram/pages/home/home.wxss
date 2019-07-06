@@ -104,9 +104,10 @@ page {
 }
 
 .item-img {
-  width: 200rpx;
-  height: 190rpx;
+  width: 220rpx;
+  height: 210rpx;
   margin: 6rpx;
+  opacity: 0;
 }
 
 .item-img-default {
@@ -186,4 +187,19 @@ page {
   border-radius: 10rpx;
   width: 650rpx;
   height: 800rpx;
+}
+
+.opcity {
+  opacity: 1;
+  animation: opcityImg 1s;
+}
+
+@keyframes opcityImg {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

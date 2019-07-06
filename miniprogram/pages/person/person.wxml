@@ -2,10 +2,9 @@
 <view class="person">
   <view class="person-message">
     <block wx:if="{{avatarUrl||nickName}}">
-      <image class="user-avatar" src="{{avatarUrl}}"></image>
+      <image class="user-avatar" src="{{avatarUrl||defaultImage}}"></image>
       <view class="user-name">{{nickName}}</view>
     </block>
-    <button open-type='getUserInfo' wx:else bindtap='getUserInfo'>登录</button>
   </view>
   <view class="list-wrap">
     <view class="message list" bindtap='goTarget' data-url='/pages/message/message'>
@@ -20,7 +19,7 @@
     </view>
     <view class="biaoji list">
       <image class="icon" src="../../images/biaoji.png"></image>
-      <text class="icon-text">{{switchShow?'已显示':'未显示'}}</text>
+      <text class="icon-text">{{switchShow?'已公开':'已匿名'}}</text>
       <switch checked="{{switchShow}}" bindchange="switchChange" class="switch" color="#0078ff" />
     </view>
   </view>

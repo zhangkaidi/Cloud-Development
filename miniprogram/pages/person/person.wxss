@@ -4,10 +4,12 @@
   width: 100%;
   height: 100%;
 }
-.person-message button{
-  width:200rpx;
+
+.person-message button {
+  width: 200rpx;
   font-size: 30rpx;
 }
+
 .person-message {
   width: 100%;
   height: 450rpx;
@@ -32,10 +34,11 @@
   width: 110rpx;
   height: 110rpx;
   border-radius: 50%;
+  background-color: #fff;
 }
 
 .user-name {
-  padding-top:15rpx;
+  padding-top: 15rpx;
   color: #fff;
   font-size: 26rpx;
 }

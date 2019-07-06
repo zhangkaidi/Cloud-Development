@@ -78,12 +78,11 @@ page {
 
 .text.name {
   font-weight: 500;
-  color: #333;
+  color: #5b6a91;
 }
 
 .text.time {
   font-size: 24rpx;
-  font-weight: 500;
   color: #999;
 }
 
@@ -105,7 +104,7 @@ page {
 .message {
   float: left;
   font-size: 28rpx;
-  color: #555;
+  color: #000;
   width: 610rpx;
   text-align: justify;
   margin-left: 5rpx;

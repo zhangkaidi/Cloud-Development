@@ -12,22 +12,23 @@ Page({
     mapCount: 0,
     nickName: "",
     avatarUrl: "",
-    openid: ""
+    openid: "",
+    defaultImage: "../../images/user-unlogin.png"
   },
   onShow: function() {
     this.mark();
     wx.hideShareMenu();
     this.setData({
       openid: app.globalData.openid,
-      nickName: wx.getStorageSync('nickName'),
-      avatarUrl: wx.getStorageSync('avatarUrl')
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl
     })
   },
   onShareAppMessage: function(options) {
     if (options.from == 'button') {
       return {
         title: 'where are u?',
-        path: '/pages/home/home',
+        path: '/pages/ad/ad',
         imageUrl: "../../images/share.jpg"
       }
     }
@@ -109,35 +110,5 @@ Page({
         }
         console.log(JSON.stringify(resp))
       })
-  },
-  getUserInfo: function() {
-    let that = this;
-    wx.getSetting({
-      success(ress) {
-        if (ress.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success(res) {
-              wx.setStorageSync('avatarUrl',
-                res.userInfo.avatarUrl,
-              )
-              wx.setStorageSync('nickName',
-                res.userInfo.nickName
-              )
-              that.setData({
-                nickName: res.userInfo.nickName,
-                avatarUrl: res.userInfo.avatarUrl,
-                isLogn: true
-              })
-            },
-            fail() {
-              that.setData({
-                isLogn: false
-              })
-            }
-          })
-        }
-      }
-    })
   }
 })

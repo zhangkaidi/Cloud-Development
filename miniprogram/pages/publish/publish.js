@@ -10,7 +10,8 @@ Page({
     inputShow: false,
     tip: "",
     index: 1,
-    navgationText:"留言"
+    navgationText: "留言",
+    defaultImage: "../../images/user-unlogin.png"
   },
   onShow: function() {
     this.setData({
@@ -31,6 +32,9 @@ Page({
     })
   },
   skip: function(index) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     const {
       getMessage,
     } = this.data;
@@ -38,6 +42,7 @@ Page({
     db.collection('message').orderBy('createTime', 'desc').skip(10 * index).limit(10)
       .get()
       .then(res => {
+        wx.hideLoading()
         for (var i = 0; i < res.data.length; i++) {
           res.data[i].createTime = utils.formatDateTime(res.data[i].createTime)
         }
@@ -48,7 +53,9 @@ Page({
           tip: ""
         })
       })
-      .catch(console.error)
+      .catch(() => {
+        wx.hideLoading()
+      })
   },
   onReachBottom: function() {
     console.log('onReachBottom')
@@ -72,8 +79,6 @@ Page({
   },
   formSubmit: function() {
     const {
-      avatarUrl,
-      nickName,
       message
     } = this.data
     if (!message) {
@@ -85,8 +90,8 @@ Page({
       data: {
         message: message,
         createTime: db.serverDate(),
-        avatarUrl: avatarUrl,
-        nickName: nickName,
+        avatarUrl: app.globalData.avatarUrl,
+        nickName: app.globalData.nickName,
         isTop: false
       }
     }).then(resp => {
@@ -120,32 +125,12 @@ Page({
   },
   publish: function() {
     let that = this;
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success(res) {
-              app.globalData.avatarUrl = res.userInfo.avatarUrl
-              app.globalData.nickName = res.userInfo.nickName
-              that.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                nickName: res.userInfo.nickName,
-                inputShow: true
-              }, () => {
-                that.setData({
-                  focus: true
-                })
-              })
-            },
-            fail(res) {
-              that.setData({
-                inputShow: false
-              })
-            }
-          })
-        }
-      }
+    that.setData({
+      inputShow: true
+    }, () => {
+      that.setData({
+        focus: true
+      })
     })
   },
   getMessage: function() {

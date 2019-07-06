@@ -2,5 +2,6 @@
   "navigationBarTitleText": "点赞",
   "usingComponents": {
     "Bar": "../../component/Bar/Bar/"
-  }
+  },
+  "enablePullDownRefresh": true
 }

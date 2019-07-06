@@ -3,8 +3,8 @@
 <view class="container">
   <view class="userinfo">
     <view class="write-text">
-      <input wx:if="{{inputShow}}" placeholder="送上祝福~" type="text" confirm-type="send" class="input" value="{{message}}" bindconfirm="formSubmit" bindinput="messageText" focus="{{focus}}" />
-      <button class="userinfo-avatar" open-type="getUserInfo" bindtap='publish'></button>
+      <input wx:if="{{inputShow}}" placeholder="送上祝福~" type="text" confirm-type="send" class="input" value="{{message}}" bindconfirm="formSubmit" bindinput="messageText" focus="{{focus}}" adjust-position="{{false}}" />
+      <button class="userinfo-avatar" bindtap='publish'></button>
     </view>
   </view>
 </view>
@@ -13,7 +13,7 @@
     <block wx:for="{{getMessage}}" wx:key="{{index}}">
       <view class="clearfix message-wrap">
         <view class="fl">
-          <image src="{{item.avatarUrl}}" class="icon"></image>
+          <image src="{{item.avatarUrl||defaultImage}}" class="icon"></image>
         </view>
         <view class="fl con">
           <view class="fl">

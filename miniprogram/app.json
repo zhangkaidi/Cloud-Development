@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/ad/ad",
     "pages/home/home",
     "pages/map/map",
     "pages/heart/heart",
     "pages/publish/publish",
     "pages/person/person",
     "pages/message/message",
-    "pages/starpublish/starpublish"
+    "pages/starpublish/starpublish" 
   ],
   "tabBar": {
     "selectedColor": "#d4237a",
