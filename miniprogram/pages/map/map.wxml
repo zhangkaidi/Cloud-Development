@@ -2,7 +2,7 @@
 <Bar navgationText="{{navgationText}}" num="{{markersEndCount}}"></Bar>
 <map id="myMap" class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale='5' subkey="MMYBZ-SYILR-XZXWY-W7DLK-HSALZ-V3FF4" polyline="{{polyline}}" markers="{{markers}}" show-location bindmarkertap="markertap">
   <cover-view class="cover">
-    <button class="user" open-type="getUserInfo" bindgetuserinfo="getuseringo" bindtap='initLocation'>
+    <button class="user" open-type="getUserInfo" bindgetuserinfo="getuserinfo" bindtap='initLocation'>
       <cover-image src="../../images/mark.png" class="cover-img userinfo-avatar"></cover-image>
     </button>
   </cover-view>

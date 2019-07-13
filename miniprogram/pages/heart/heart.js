@@ -24,8 +24,10 @@ Page({
     const {
       openid
     } = app.globalData;
-  
     this.exitOpenId(openid)
+    this.setData({
+      aniNum: utils.random(0, this.data.userInfoListData - 1)
+    })
   },
   onHide: function() {
     this.setData({
@@ -42,7 +44,6 @@ Page({
     db.collection('userInfo').count().then(res => {
       this.setData({
         userInfoListData: res.total,
-        aniNum: utils.random(0, res.total - 1)
       })
     })
   },

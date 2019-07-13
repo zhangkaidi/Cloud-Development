@@ -104,10 +104,10 @@ page {
 }
 
 .item-img {
-  width: 220rpx;
+  width: 200rpx;
   height: 210rpx;
   margin: 6rpx;
-  opacity: 0;
+  background-color: #f3f3f3;
 }
 
 .item-img-default {

@@ -110,7 +110,6 @@ Page({
     })
   },
   formSubmit: function(e) {
-    console.log()
     wx.cloud.callFunction({
       name: 'formid',
       data: {

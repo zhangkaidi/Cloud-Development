@@ -15,19 +15,8 @@ Page({
     this.exitOpenId()
     this.getLocationSetting()
   },
-  getuseringo: function() {
-    let that = this;
-    wx.getSetting({
-      success(res) {
-        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-        if (res.authSetting['scope.userLocation']) {
-          that.getLocation()
-        }
-      },
-      fail() {
-        console.log('失败~')
-      }
-    })
+  getuserinfo: function() {
+    this.getLocation()
   },
   getLocation: function() {
     const {
