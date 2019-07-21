@@ -16,7 +16,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onLoad:function(){
+  onLoad: function() {
     this.getUserInfoMessage()
     this.getUserCount() //点赞数
   },
@@ -34,7 +34,7 @@ Page({
       aniNum: null
     })
   },
-  onPullDownRefresh:function(){
+  onPullDownRefresh: function() {
     this.getUserInfoMessage()
     this.getUserCount() //点赞数
     wx.stopPullDownRefresh(); //停止当前页面下拉刷新。
@@ -121,5 +121,8 @@ Page({
       console.log('res---->' + res)
       wx.hideLoading()
     })
+  },
+  animation: function() { 
+    
   }
 })

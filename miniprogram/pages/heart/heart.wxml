@@ -2,7 +2,10 @@
 <view class='user-list' wx:if="{{userInfoList}}">
   <view class="user-wrap">
     <block wx:for="{{userInfoList}}" wx:key="{{index}}">
-      <image src="{{item.avatarUrl||defaultImage}}" bindtap='{{animation}}' class="img {{aniNum==index?'active':''}}"></image>
+      <view class='anim'>
+        <image src="{{item.avatarUrl||defaultImage}}" bindtap='{{animation}}' class="img {{aniNum==index?'active':''}}" data-index='index'></image>
+        <view class="ani {{aniNum==index?'anima':' '}}">七小依</view>
+      </view>
     </block>
   </view>
 </view>

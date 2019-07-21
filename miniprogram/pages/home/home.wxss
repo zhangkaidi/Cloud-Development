@@ -203,3 +203,43 @@ page {
     opacity: 1;
   }
 }
+
+.show-message {
+  position: fixed;
+  height: 40rpx;
+  bottom: 100rpx;
+  z-index: 100;
+  left: 15rpx;
+}
+
+.messgae-list {
+  background: rgba(0, 0, 0, 0.4);
+  margin-top: 5rpx;
+  border-radius: 20rpx;
+}
+
+.avatar {
+  width: 35rpx;
+  height: 35rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-left: 15rpx;
+}
+
+.message {
+  height: 40rpx;
+  line-height: 40rpx;
+  display: inline-block;
+  font-size: 20rpx;
+  color: #fff;
+  margin-left: 10rpx;
+  width: 300rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.swiper-list {
+  height: 80rpx;
+  width: 400rpx;
+}

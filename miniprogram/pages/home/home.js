@@ -8,9 +8,9 @@ Page({
    */
   data: {
     indicatorDots: false,
-    autoplay: false,
+    autoplay: true,
     circular: true,
-    interval: 3000,
+    interval: 2000,
     getMessage: [],
     autoplaycon: true,
     indicatorDotscon: false,
@@ -22,31 +22,28 @@ Page({
     getStarMessage: [],
     fileListUrl: [],
     openid: "",
-    imageFlag: false
-  },
-  onReady: function() {
-    // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createAudioContext('myAudio')
-    this.audioCtx.play()
+    imageFlag: false,
+    defaultImage: "../../images/user-unlogin.png"
   },
   isAudio: function() {
     const {
       isAudio
     } = this.data
-    isAudio ? this.audioCtx.pause() : this.audioCtx.play()
+    isAudio ? wx.pauseBackgroundAudio() : wx.playBackgroundAudio()
     this.setData({
       isAudio: !isAudio
     })
   },
   onLoad: function() {
     this.getOpenid()
+    this.getMusic()
   },
   onShow: function() {
     if (app.globalData.publishSuccess) {
       this.getStarMessage()
       app.globalData.publishSuccess = false
     }
-    this.getMusic()
+    this.getMessage()
   },
   getOpenid: function() {
     // 调用云函数
@@ -107,6 +104,11 @@ Page({
       this.setData({
         src: res.data[0].music
       })
+      wx.playBackgroundAudio({
+        dataUrl: res.data[0].music,
+        title: '1',
+        coverImgUrl: '1'
+      })
     })
   },
   formSubmit: function(e) {
@@ -165,6 +167,14 @@ Page({
     console.log(e)
     this.setData({
       imageFlag: true
+    })
+  },
+  getMessage: function() {
+    const db = wx.cloud.database()
+    db.collection('message').orderBy('createTime', 'desc').limit(10).get().then(res => {
+      this.setData({
+        getMessage: res.data
+      })
     })
   }
 })

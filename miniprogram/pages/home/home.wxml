@@ -29,4 +29,16 @@
   <view class="bgs-wrap" wx:if="{{false}}">
     <image src="../../images/bgs.png" class="bgs"></image>
   </view>
+  <view class='show-message'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" vertical="{{vertical}}" class="swiper-list">
+      <block wx:for="{{getMessage}}">
+        <swiper-item>
+          <view class='messgae-list'>
+            <image src='{{item.avatarUrl||defaultImage}}' class='avatar'></image>
+            <text class='message'>{{item.message}}</text>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
 </view>
